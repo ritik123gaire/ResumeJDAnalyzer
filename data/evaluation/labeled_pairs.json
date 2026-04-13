@@ -1,0 +1,16 @@
+[
+  {
+    "resume_id": "R001",
+    "jd_id": "J001",
+    "resume_text": "Data analyst with Python, SQL, Tableau, and AWS experience.",
+    "jd_text": "Seeking data analyst with SQL, Python, Tableau, communication, and cloud skills.",
+    "label": 4.0
+  },
+  {
+    "resume_id": "R002",
+    "jd_id": "J002",
+    "resume_text": "Frontend developer with React, JavaScript, and CSS.",
+    "jd_text": "Machine learning engineer with Python, PyTorch, NLP, and Docker.",
+    "label": 1.0
+  }
+]

@@ -1,0 +1,8 @@
+default_approach: bi_encoder
+approaches:
+  - tfidf
+  - bi_encoder
+  - cross_encoder
+cross_encoder:
+  model_path: cross-encoder/ms-marco-MiniLM-L-6-v2
+  train_output_dir: models/cross_encoder
