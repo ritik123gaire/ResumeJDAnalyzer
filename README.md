@@ -310,13 +310,7 @@ What we **built or integrated** in this project (beyond “load one model and ca
 - **Legal / fair hiring use:** The tool is **not** validated for employment decisions, compliance, or bias auditing across demographics; pretrained models carry **language and domain biases** from their training corpora.
 - **Very creative resume layouts:** Section detection uses **whole-line header** patterns; unusual formatting may land most content in `other`, weakening section-weighted features.
 - **Cross-encoder + very long texts:** Token limits mean the model may not see the entire resume and JD; JD focus reduces but does not eliminate this.
-- **Evaluation size:** The included `labeled_pairs.json` is a **minimal stub**; metrics swing easily with one pair and are **not** stable evidence of production accuracy.
-- **Poor example on the stub set (what “failure” looks like):** The pair `R002` / `J002` (frontend resume vs ML JD, label **1.0**) is a deliberate **mismatch**. On our last local run, **TF-IDF** put both stub pairs **below** the evaluation cutoff (**0.7**), so it missed the good pair as well as the bad one (**F1 = 0**). **Bi-encoder** and **cross-encoder** both achieved **F1 = 1.0** on the same two pairs at that cutoff—illustrative only, because **n = 2** is far too small to generalize. A serious study would tune thresholds on a validation split and report confidence intervals.
 
-**What we did not build**
-
-- Automatic **cover letter** generation, interview prep, or salary negotiation advice.
-- Guaranteed **ATS compatibility** with any specific employer system.
 
 ---
 
