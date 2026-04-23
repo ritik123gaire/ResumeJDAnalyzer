@@ -18,7 +18,7 @@ pinned: false
 ## Demo link
 
 **Live demo (add your URL after deployment):**  
-`[https://huggingface.co/spaces/<username>/<space-name>](https://huggingface.co/spaces/ritik123gaire/resume-jd-analyzer)`
+`[https://huggingface.co/spaces/ritik123gaire/resume-jd-analyzer]`
 
 **Local demo (one command after setup):** from the repository root, with the virtual environment activated, run:
 
