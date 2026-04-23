@@ -11,7 +11,8 @@ from PyPDF2 import PdfReader
 SECTION_PATTERNS = {
     "summary": r"\b(summary|profile|objective)\b",
     "experience": r"\b(experience|employment|work history|professional experience)\b",
-    "skills": r"\b(skills|technical skills|core competencies|technologies)\b",
+    # Allow headers like "Core Skills" (whole-line match after normalize).
+    "skills": r"^(?:core\s+)?(?:skills|technical skills|core competencies|technologies)$",
     "education": r"\b(education|academic background|qualifications)\b",
     "certifications": r"\b(certifications|licenses)\b",
 }

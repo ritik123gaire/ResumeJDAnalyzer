@@ -23,9 +23,15 @@ class CrossEncoderMatcher:
     def __init__(self, model_name_or_path: str = "cross-encoder/ms-marco-MiniLM-L-6-v2", max_length: int = 512):
         self.model = CrossEncoder(model_name_or_path, num_labels=1, max_length=max_length)
 
+    @staticmethod
+    def _logit_to_unit_interval(logit: float) -> float:
+        """MS MARCO-style cross-encoders return a single logit, not a probability."""
+        x = float(np.clip(logit, -80.0, 80.0))
+        return float(1.0 / (1.0 + np.exp(-x)))
+
     def score(self, resume_text: str, jd_text: str) -> float:
-        score = self.model.predict([(resume_text, jd_text)], convert_to_numpy=True)
-        return float(np.clip(score[0], 0.0, 1.0))
+        raw = self.model.predict([(resume_text, jd_text)], convert_to_numpy=True)
+        return float(np.clip(self._logit_to_unit_interval(float(raw.reshape(-1)[0])), 0.0, 1.0))
 
     def score_skill_pairs(
         self,
@@ -45,7 +51,10 @@ class CrossEncoderMatcher:
 
         scores = self.model.predict(candidates, convert_to_numpy=True)
         ranked = sorted(
-            [(index[i][0], index[i][1], float(scores[i])) for i in range(len(scores))],
+            [
+                (index[i][0], index[i][1], self._logit_to_unit_interval(float(scores[i])))
+                for i in range(len(scores))
+            ],
             key=lambda x: x[2],
             reverse=True,
         )
@@ -80,4 +89,7 @@ class CrossEncoderMatcher:
         pairs = [(resume_text, jd_texts[jid]) for jid in ids]
         scores = self.model.predict(pairs, convert_to_numpy=True)
         ranked = sorted(zip(ids, scores.tolist()), key=lambda x: x[1], reverse=True)
-        return [(jid, float(np.clip(score, 0.0, 1.0))) for jid, score in ranked]
+        return [
+            (jid, float(np.clip(self._logit_to_unit_interval(float(score)), 0.0, 1.0)))
+            for jid, score in ranked
+        ]
