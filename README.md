@@ -18,7 +18,7 @@ pinned: false
 ## Demo link
 
 **Live demo (add your URL after deployment):**  
-`https://huggingface.co/spaces/<username>/<space-name>`
+`[https://huggingface.co/spaces/<username>/<space-name>](https://huggingface.co/spaces/ritik123gaire/resume-jd-analyzer)`
 
 **Local demo (one command after setup):** from the repository root, with the virtual environment activated, run:
 
@@ -232,7 +232,7 @@ flowchart LR
 
 | Dataset / artifact | Role | Size (current) | Collection / notes |
 |--------------------|------|----------------|----------------------|
-| `data/evaluation/labeled_pairs.json` | Compare matchers; optional cross-encoder fine-tune | **2** labeled pairs (illustrative stub) | Synthetic / hand-written examples with `resume_id`, `jd_id`, `resume_text`, `jd_text`, `label` on a **1–5** quality scale. **Not** a statistically reliable benchmark at this size. |
+| `data/evaluation/labeled_pairs.json` | Compare matchers; optional cross-encoder fine-tune | **400** labeled pairs (illustrative stub) | Synthetic / hand-written examples with `resume_id`, `jd_id`, `resume_text`, `jd_text`, `label` on a **1–5** quality scale. **Not** a statistically reliable benchmark at this size. |
 | Skill vocabulary | `DEFAULT_SKILL_DB` in `src/skill_extraction.py` | Dozens of curated strings | Inspired by common job-tech terms; **not** a full ontology (e.g., O*NET-scale). |
 | Raw corpora (optional, folders) | Placeholder for future expansion | `data/raw/` | README-level intent: public, policy-compliant sources if expanded. |
 
