@@ -346,11 +346,4 @@ ResumeJDAnalyzer/
   system_details.md         ← extended system reference
 ```
 
----
 
-## Final submission checklist
-
-- [ ] Hosted demo link added at the top of this README.
-- [ ] User guide sections satisfied: Introduction, Usage, Documentation, Contributions, Limitations.
-- [ ] Experiment table present (expand labeled data for stronger claims).
-- [ ] Demo link + user guide posted per course instructions (e.g., Discord).
