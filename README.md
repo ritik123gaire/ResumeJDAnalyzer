@@ -341,7 +341,7 @@ ResumeJDAnalyzer/
   results/metrics/
   requirements.txt
   README.md                 ← this user guide
-  system_details.md         ← extended system reference
+ 
 ```
 
 
