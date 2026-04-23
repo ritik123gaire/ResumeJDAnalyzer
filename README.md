@@ -32,7 +32,7 @@ Then open the URL shown in the terminal (by default `http://127.0.0.1:7860`). Th
 
 ## Introduction
 
-**What this system does (in plain language).**  
+**What this system does .**  
 Job postings are long. Resumes are dense. This tool helps someone applying for a job **compare their resume to a specific posting** and get structured feedback: a **match score**, **lists of skills** the system noticed on each side, **gaps** where the posting asks for something the resume does not clearly show, and **concrete suggestions** for how to strengthen the resume. It also highlights **which part of the job text** was used for scoring when the posting includes a lot of corporate boilerplate, and offers simple **formatting tips** so the document is easier for both humans and parsers to read.
 
 **What it is not.**  
