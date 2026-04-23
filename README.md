@@ -228,18 +228,22 @@ flowchart LR
 - **Compute:** Very fast; good baseline for **lexical** overlap.
 - **Limitations:** Misses paraphrases; sensitive to boilerplate token mass in unconcentrated JDs (JD focus mitigates this in the app).
 
-### Datasets used in this repository
+## Datasets used in this repository
 
 | Dataset / artifact | Role | Size (current) | Collection / notes |
 |--------------------|------|----------------|----------------------|
-| `data/evaluation/labeled_pairs.json` | Compare matchers; optional cross-encoder fine-tune | **400** labeled pairs (illustrative stub) | Synthetic / hand-written examples with `resume_id`, `jd_id`, `resume_text`, `jd_text`, `label` on a **1–5** quality scale. **Not** a statistically reliable benchmark at this size. |
-| Skill vocabulary | `DEFAULT_SKILL_DB` in `src/skill_extraction.py` | Dozens of curated strings | Inspired by common job-tech terms; **not** a full ontology (e.g., O*NET-scale). |
-| Raw corpora (optional, folders) | Placeholder for future expansion | `data/raw/` | README-level intent: public, policy-compliant sources if expanded. |
+| `data/evaluation/labeled_pairs.json` | Main evaluation set for resume–JD matching; can also be reused for optional reranker / cross-encoder fine-tuning | Current repository subset; see local file for exact count | Derived from the **Resume and Job Description** dataset on Kaggle, then adapted into labeled resume–job pairs with fields such as `resume_id`, `jd_id`, `resume_text`, `jd_text`, and `label` on a **1–5** match-quality scale. The local file in this repo is a processed evaluation artifact, not the raw Kaggle export. |
+| Skill vocabulary | `DEFAULT_SKILL_DB` in `src/skill_extraction.py` | Dozens of curated strings | Hand-curated skill list used for lightweight skill extraction and overlap features. It is a practical seed vocabulary, **not** a complete ontology or standardized taxonomy such as O*NET. |
+| Raw corpora / source data | Upstream source for evaluation-pair construction | External dataset | Source data comes from Kaggle: **Resume and Job Description** — https://www.kaggle.com/datasets/pranavvenugo/resume-and-job-description |
 
-**Annotation protocol (recommended for growing the eval set):**  
-For each pair, label **overall fit** 1–5 using a short rubric (e.g., 1 = unrelated domain, 3 = partial overlap, 5 = strong skill and responsibility match). Keep `resume_id` stable if you add multiple JDs per candidate for ranking metrics (NDCG/MRR in `scripts/run_experiments.py`).
+**Annotation protocol / label meaning:**  
+Each resume–job pair is assigned an **overall fit** score from **1 to 5**, where a typical rubric is: **1** = unrelated or poor fit, **3** = partial overlap, **5** = strong match in skills and responsibilities. If multiple job descriptions are paired with the same candidate, keep `resume_id` stable so ranking metrics such as **MRR** or **NDCG** remain meaningful.
 
-**Class / distribution note:** With binary thresholds derived from labels ≥ 3.5 as “positive,” class balance depends on how you label. The current stub has one high and one low label (balanced for toy tests, not for inference).
+**Important note on the local evaluation file:**  
+`labeled_pairs.json` is a **processed / derived benchmark artifact**, not synthetic data, if it was built from the Kaggle source dataset. It should be described as a local evaluation set created from the upstream dataset after preprocessing, pairing, and labeling.
+
+**Class balance note:**  
+If the 1–5 labels are converted into binary relevance, for example using **label >= 3.5** as positive, the final class balance depends on the pair-construction and annotation strategy. Report the actual balance from the local file rather than assuming it in advance.ass / distribution note:** With binary thresholds derived from labels ≥ 3.5 as “positive,” class balance depends on how you label. The current stub has one high and one low label (balanced for toy tests, not for inference).
 
 ### External frameworks and what we use from them
 
